@@ -14,6 +14,4 @@ public class Message_PC<T> : EventArgs
     {
         messageArgu = message;
     }
-
-
 }

@@ -5,7 +5,6 @@ using System;
 
 public interface IPublisher<T>
 {
-    event EventHandler<Message_PC<T>> dataPublisher;
-
-    void publishData(T data);
+    event EventHandler<Message_PC<T>> dataPublisher; // Publish a message of t name of dataPublisher.
+    void publishData(T data); // publishData the message.
 }
