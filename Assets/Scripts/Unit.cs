@@ -2,17 +2,39 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
-public class Unit
+public class Unit : MonoBehaviour
 {
-    public void unit(int hp, int attack)
-    {
-        hp = 100;
-        attack = 10;
-    }
-    /*
-        put players and enemy all in a list, whoever is the first element will be their first turn.
-        As players attack
-    */
+    public int baseHealth;
+    public int damage;
+    public Slider healthBar;
 
+    void Start()
+    {
+        baseHealth = health;
+    }
+
+    public int health
+    {
+        get{ return baseHealth; }
+        set
+        {
+            baseHealth = value;
+            healthBar.value = baseHealth;
+
+            if (baseHealth <= 0)
+                Destroy(gameObject);
+        }
+    }
+
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+    }
+
+    public void attack(GameObject target)
+    {
+        target.GetComponent<Unit>().takeDamage(damage);
+    }
 }

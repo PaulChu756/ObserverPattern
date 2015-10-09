@@ -3,25 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public static class EventSystem
+public static class EventSystem<T>
 {
-    static Dictionary<string, callBack> eventTable = new Dictionary<string, callBack>(); // Difference of Class of Delegate and delegate, callBack = delegate
-
-    public static void Publisher(string message) // Publisher publishes a message, and the subscriber will subscriber to that message while I will exe the function.
+    static Dictionary<T, callBack> eventTable = new Dictionary<T, callBack>(); // Difference of Class of Delegate and delegate, callBack = delegate
+    public static void Publisher(T message) // Publisher publishes a message, and the subscriber will subscriber to that message while I will exe the function.
     {
-       if(eventTable.ContainsKey(message)) // Tested and good
+       if(eventTable.ContainsKey(message))
         {
             eventTable[message]();
             Debug.Log("Check if message is in the Dict, if so, exe it");
         }
     }
 
-    public static void Subscriber(string message, callBack function) // Tested and good
+
+    public static void Subscriber(T message, callBack function)
     {
         CombineSubs(message, function);
     }
 
-    public static void CombineSubs(string message, callBack function)
+
+    public static void CombineSubs(T message, callBack function)
     {
         if (eventTable.ContainsKey(message))
         {
@@ -33,37 +34,6 @@ public static class EventSystem
 
         // I want to check if subscribers are subscribe to the same message
         // if they're on the same message, add them together.
-    }
-
-
-    public static void Subs()
-    {
-        Subscriber("Message", InterestedSubs); // exe the function
-    }
-
-    public static void s_Subs()
-    {
-        Subscriber("Keys", Keys);
-    }
-    public static void InterestedSubs()
-    {
-        Debug.Log("It works!");
-    }
-    public static void Keys()
-    {
-        Debug.Log("Shaking Keys");
-    }
-
-    public static void test() // Tested and good
-    {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            Publisher("Message");
-        }
-        if(Input.GetKeyDown(KeyCode.D))
-        {
-            Publisher("Keys");
-        }
     }
 }
 
