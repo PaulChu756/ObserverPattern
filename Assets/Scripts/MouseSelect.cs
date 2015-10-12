@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MouseSelect
+public class MouseSelect : MonoBehaviour // IT WORKS!
 {
     // Most likely use a courotine
     public delegate void ClickEvent(GameObject go);
@@ -16,7 +16,7 @@ public class MouseSelect
 
         if (Physics.Raycast(ray, out hit, 100))
         {
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
             // if we click on ze mouse
             if (Input.GetMouseButtonUp(0))
             {

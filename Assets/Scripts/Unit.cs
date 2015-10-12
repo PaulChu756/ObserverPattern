@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
-using System;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
+
 
 public class Unit : MonoBehaviour
 {
-    public int baseHealth;
-    public int damage;
-    public Slider healthBar;
+    public int baseHealth = 100;
+    public int damage = 10;
+    public Slider healthBar; // Tested healthBars and they do decrement
 
     void Start()
     {
@@ -24,12 +24,15 @@ public class Unit : MonoBehaviour
             healthBar.value = baseHealth;
 
             if (baseHealth <= 0)
+            {
                 Destroy(gameObject);
+            } 
         }
     }
 
     public void takeDamage(int damage)
     {
+        damage = Random.Range(10, 30);
         health -= damage;
     }
 

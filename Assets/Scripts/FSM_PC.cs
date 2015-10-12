@@ -35,7 +35,7 @@ public class FSM_PC <T>
         {
             keyName = currentState.ToString() + "going to state: " + nextState.ToString(); // Putting the current and nextStates to strings because keyName is a string as well.
             transactionTable.Add(keyName, del); // adding the string and function into the dictonary.
-            Debug.Log("Added transaction");
+            Debug.Log(currentState.ToString() + " Added transaction " + nextState.ToString());
         }
 
         else
@@ -49,7 +49,7 @@ public class FSM_PC <T>
         checkTransition(currentState, nextState);
     }
 
-    private void checkTransition(T currentState, T nextState) // Checking the transitions
+    public void checkTransition(T currentState, T nextState) // Checking the transitions
     {
         keyName = currentState.ToString() + "going to state " + nextState.ToString();
 
