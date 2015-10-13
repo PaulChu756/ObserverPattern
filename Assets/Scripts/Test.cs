@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 //public class Test : MonoBehaviour
 //{
-//void Update()
-//{
-//    EventSystem.test(); // adding subcriber and publisher messages
-//    EventSystem.Subs(); // Both Subscribers
+//    public Button Attack;
+//    public Button EndTurn;
+
+//    bool isClicked = false;
+//    void Update()
+//    {
+//        EventSystem.test(); // adding subcriber and publisher messages
+//        EventSystem.Subs(); // Both Subscribers
+//    }
+
 //}
 
 //public static void Subs()

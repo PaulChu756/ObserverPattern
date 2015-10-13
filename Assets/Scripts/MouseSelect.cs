@@ -3,28 +3,37 @@ using System.Collections;
 
 public class MouseSelect : MonoBehaviour // IT WORKS!
 {
-    // Most likely use a courotine
-    public delegate void ClickEvent(GameObject go);
-    public ClickEvent OnClick;
+    TurnManager turnManager;
+    public Color white;
+    /*
+        -----Thoughts-----
+        So I use the mouse position to "Select targets"
+        For the player to select which turn they would like to attack.
+        Once the player has choose their target, they pressed the attack button
+        The attack Button will decrease their target's health according to the damage.
+        Each player has one "Action" so therefore, they can only attack one time.
+        Then they end their turn and this method repeats.
+    */
 
-    void Update()
+    public void Update()
     {
-        // create the ray
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        // Ray hit
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 100))
+        if (Input.GetMouseButtonDown(0))
         {
-            //Debug.Log(hit.transform.name);
-            // if we click on ze mouse
-            if (Input.GetMouseButtonUp(0))
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100))
             {
-                // notify the event
-                Debug.Log("Event Trigger on " + hit.transform.name);
-                if (OnClick != null)
-                    OnClick(hit.transform.gameObject);
+                if (hit.transform.gameObject.GetComponent<Unit>())
+                {
+                    hit.transform.gameObject.GetComponent<Renderer>().material.color = Color.black; // Select
+                    Debug.Log("Unit selected");
+                }
+                else
+                {
+                    hit.transform.gameObject.GetComponent<Renderer>().material.color = Color.white;
+                }
             }
-        }
+        } 
     }
 }

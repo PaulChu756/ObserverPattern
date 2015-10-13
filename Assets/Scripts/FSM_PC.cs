@@ -9,7 +9,7 @@ public class FSM_PC <T>
     public List<T> gameState = new List<T>(); // Making a list to store information of T.
     private string keyName; // the keyName is for the Strings in the Dictionary
     public T currentState; // a public Template currentState
-    callBack del; 
+    
 
     public void addState(T state) // add States, let the user add the states and store them.
     {
@@ -20,7 +20,7 @@ public class FSM_PC <T>
         else
         {
             gameState.Add(state); // Add the state in the list
-            Debug.Log("This " + state + " has been added to this list");
+            //Debug.Log("This " + state + " has been added to this list");
         }   
     }
     /*
@@ -35,7 +35,7 @@ public class FSM_PC <T>
         {
             keyName = currentState.ToString() + "going to state: " + nextState.ToString(); // Putting the current and nextStates to strings because keyName is a string as well.
             transactionTable.Add(keyName, del); // adding the string and function into the dictonary.
-            Debug.Log(currentState.ToString() + " Added transaction " + nextState.ToString());
+            //Debug.Log(currentState.ToString() + " Added transaction " + nextState.ToString());
         }
 
         else
@@ -46,12 +46,13 @@ public class FSM_PC <T>
 
     public void changingState(T nextState) // Changing the states
     {
-        checkTransition(currentState, nextState);
+        Transition(currentState, nextState);
     }
 
-    public void checkTransition(T currentState, T nextState) // Checking the transitions
+    private void Transition(T currentState, T nextState) // Checking the transitions
     {
         keyName = currentState.ToString() + "going to state " + nextState.ToString();
+        callBack del;
 
         foreach (object o in transactionTable)
         {

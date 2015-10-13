@@ -6,11 +6,7 @@ public class GameStates : MonoBehaviour
 {
     public enum gameState{ INIT, IDLE, ATTACK, ENDTURN} // States
 
-    FSM_PC<gameState> state = new FSM_PC<gameState>(); // List of states
-    callBack initToIdle;
-    callBack idleToAttack;
-    callBack attacktoEndTurn;
-    callBack endTurnToIdle;
+    public FSM_PC<gameState> state = new FSM_PC<gameState>(); // List of states
 
     void Awake()
     {
@@ -20,30 +16,29 @@ public class GameStates : MonoBehaviour
         state.addState(gameState.ENDTURN);
 
         // Transitions here
-        state.addTransition(gameState.INIT, gameState.IDLE, initToIdle); // adding all the transition of states to the next state
-        state.addTransition(gameState.IDLE, gameState.ATTACK, idleToAttack);
-        state.addTransition(gameState.ATTACK, gameState.ENDTURN, attacktoEndTurn);
-        state.addTransition(gameState.ENDTURN, gameState.IDLE, endTurnToIdle);
+        state.addTransition(gameState.INIT, gameState.IDLE, null); // adding all the transition of states to the next state
+        state.addTransition(gameState.IDLE, gameState.ATTACK, null);
+        state.addTransition(gameState.ATTACK, gameState.ENDTURN, null);
+        state.addTransition(gameState.ENDTURN, gameState.IDLE, null);
 
         state.currentState = gameState.INIT; // set the current start off state is INIT
+        Idle();
     }
 
     public void Idle()
     {
-        state.changingState(gameState.IDLE);
-        state.checkTransition(gameState.INIT, gameState.IDLE); // Check all the transition of each state
+        state.changingState(gameState.IDLE); // Check all the transition of each state
     }
 
     public void Attack()
     {
         state.changingState(gameState.ATTACK);
-        state.checkTransition( gameState.IDLE, gameState.ATTACK);
+        Idle();
     }
 
     public void EndTurn()
     {
         state.changingState(gameState.ENDTURN);
-        state.checkTransition(gameState.ATTACK, gameState.ENDTURN);
         Idle();
     }
 }
