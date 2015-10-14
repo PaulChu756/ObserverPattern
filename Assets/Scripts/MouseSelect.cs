@@ -26,18 +26,14 @@ public class MouseSelect : MonoBehaviour // IT WORKS!
             {
                 if (hit.transform.gameObject.GetComponent<Unit>())
                 {
-                    hit.transform.gameObject.GetComponent<Renderer>().material.color = Color.black;
-
+                    //hit.transform.gameObject.GetComponent<Renderer>().material.color = Color.black;
+                    Debug.Log("Selected Unit");
                     if(turnManager.currentTurn.GetComponent<GameStates>().state.currentState == GameStates.gameState.ATTACK)
                     {
                         turnManager.GetComponent<Unit>().attack(hit.transform.gameObject);
                         turnManager.NextTurn();
                     }
                     
-                }
-                else if (!hit.transform.gameObject.GetComponent<Unit>())
-                {
-                    hit.transform.gameObject.GetComponent<Renderer>().material.color = Color.white;
                 }
             }
         } 

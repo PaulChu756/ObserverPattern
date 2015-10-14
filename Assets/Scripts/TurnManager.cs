@@ -32,7 +32,7 @@ public class TurnManager : MonoBehaviour
             turnNumber = 0; // Resetting the turn number
         }
         currentTurn = players[turnNumber]; // It is the current player's turn in the list.
-        currentTurn.GetComponent<Renderer>().material.color = Color.yellow;
+        //currentTurn.GetComponent<Renderer>().material.color = Color.yellow;
     }
 
     public void Attack()
