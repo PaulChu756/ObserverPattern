@@ -20,13 +20,11 @@ public class TurnManager : MonoBehaviour
     */
     void Start()
     {
-        Debug.Log("Start Hit");
         currentTurn = players[0];
     }
     public void NextTurn() // Works!?
     {
-        Debug.Log("NextTurn Hit");
-        currentTurn.GetComponent<GameStates>().EndTurn(); // This Mo - Fucker
+        currentTurn.GetComponent<GameStates>().EndTurn();
 
         turnNumber++; // increment the turn number by 1
         if (turnNumber >= players.Count) // If the turnNumber is greater than Player
@@ -34,11 +32,12 @@ public class TurnManager : MonoBehaviour
             turnNumber = 0; // Resetting the turn number
         }
         currentTurn = players[turnNumber]; // It is the current player's turn in the list.
+        currentTurn.GetComponent<Renderer>().material.color = Color.yellow;
     }
 
     public void Attack()
     {
-        //currentTurn.GetComponent<Unit>().Attack());
+        currentTurn.GetComponent<GameStates>().Attack();
     }
 
    

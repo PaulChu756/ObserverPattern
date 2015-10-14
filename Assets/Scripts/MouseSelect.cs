@@ -3,8 +3,8 @@ using System.Collections;
 
 public class MouseSelect : MonoBehaviour // IT WORKS!
 {
-    TurnManager turnManager;
-    public Color white;
+    public TurnManager turnManager;
+    //public Color white;
     /*
         -----Thoughts-----
         So I use the mouse position to "Select targets"
@@ -15,7 +15,7 @@ public class MouseSelect : MonoBehaviour // IT WORKS!
         Then they end their turn and this method repeats.
     */
 
-    public void Update()
+    void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -26,10 +26,16 @@ public class MouseSelect : MonoBehaviour // IT WORKS!
             {
                 if (hit.transform.gameObject.GetComponent<Unit>())
                 {
-                    hit.transform.gameObject.GetComponent<Renderer>().material.color = Color.black; // Select
-                    Debug.Log("Unit selected");
+                    hit.transform.gameObject.GetComponent<Renderer>().material.color = Color.black;
+
+                    if(turnManager.currentTurn.GetComponent<GameStates>().state.currentState == GameStates.gameState.ATTACK)
+                    {
+                        turnManager.GetComponent<Unit>().attack(hit.transform.gameObject);
+                        turnManager.NextTurn();
+                    }
+                    
                 }
-                else
+                else if (!hit.transform.gameObject.GetComponent<Unit>())
                 {
                     hit.transform.gameObject.GetComponent<Renderer>().material.color = Color.white;
                 }

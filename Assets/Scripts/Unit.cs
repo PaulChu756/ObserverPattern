@@ -32,7 +32,7 @@ public class Unit : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        damage = Random.Range(5, 30);
+        damage = Random.Range(5, 50);
         health -= damage;
     }
 

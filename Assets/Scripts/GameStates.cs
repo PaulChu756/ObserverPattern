@@ -33,7 +33,6 @@ public class GameStates : MonoBehaviour
     public void Attack()
     {
         state.changingState(gameState.ATTACK);
-        Idle();
     }
 
     public void EndTurn()
