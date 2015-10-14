@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class Unit : MonoBehaviour
 {
     public int baseHealth = 100;
-    public int attackDamage;
+    public int attackDamage = 20;
     public Slider healthBar; // Tested healthBars and they do decrement
 
     void Start()
@@ -26,18 +26,19 @@ public class Unit : MonoBehaviour
             if (baseHealth <= 0)
             {
                 Destroy(gameObject);
+                //gameObject.GetComponent<MeshRenderer>()
             } 
         }
     }
 
-    public void takeDamage(int damage)
+    public void takeDamage()
     {
-        damage = Random.Range(5, 50);
-        health -= damage;
+        attackDamage = Random.Range(5, 50);
+        health -= attackDamage;
     }
 
     public void attack(GameObject target)
     {
-        target.GetComponent<Unit>().takeDamage(attackDamage);
+        target.GetComponent<Unit>().takeDamage();
     }
 }

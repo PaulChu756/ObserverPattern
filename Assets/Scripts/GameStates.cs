@@ -8,6 +8,8 @@ public class GameStates : MonoBehaviour
 
     public FSM_PC<gameState> state = new FSM_PC<gameState>(); // List of states
 
+    TurnManager turnManager;
+
     void Awake()
     {
         state.addState(gameState.INIT); // Adding all the states
@@ -32,7 +34,9 @@ public class GameStates : MonoBehaviour
 
     public void Attack()
     {
+        Debug.Log("Attacking State");
         state.changingState(gameState.ATTACK);
+
     }
 
     public void EndTurn()
