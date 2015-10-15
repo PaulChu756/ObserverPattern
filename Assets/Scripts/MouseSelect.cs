@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MouseSelect : MonoBehaviour // IT WORKS!
 {
     public TurnManager turnManager;
     public Button attackButton;
+    
     //public Color white;
     /*
         -----Thoughts-----
@@ -30,28 +32,19 @@ public class MouseSelect : MonoBehaviour // IT WORKS!
                 {
                     //hit.transform.gameObject.GetComponent<Renderer>().material.color = Color.black;
                     Debug.Log("Selected Unit");
+
+                    // Once you select your target, you now press the attack button
+                    // to deal some type of damage or reduce their target's health by some amount.
+                    if (attackButton)
+                    {
+                        turnManager.currentTurn.GetComponent<GameStates>().state.currentState = GameStates.gameState.ATTACK;
+                        turnManager.currentTurn.GetComponent<Unit>().attack(hit.transform.gameObject);
+                    }
                 }
-
-                if (attackButton)
-                {
-                    turnManager.currentTurn.GetComponent<GameStates>().state.currentState = GameStates.gameState.ATTACK;
-                    turnManager.currentTurn.GetComponent<Unit>().attack(hit.transform.gameObject);
-                }
-                // Once you select your target, you now press the attack button
-                // to deal some type of damage or reduce their target's health by some amount.
-
-
-                // Doesn't call right here
-                //if (turnManager.currentTurn.GetComponent<GameStates>().state.currentState == GameStates.gameState.ATTACK)
-                //{
-                //    Debug.Log("Attacking Selected Target");
-
-                //    turnManager.currentTurn.GetComponent<Unit>().attack(hit.transform.gameObject);
-                //    turnManager.NextTurn();
-
-                //    Debug.Log("Next Turn for someone else to attack");
-                //}
             }
         } 
     }
 }
+
+
+
