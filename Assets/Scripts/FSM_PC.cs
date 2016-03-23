@@ -10,7 +10,6 @@ public class FSM_PC <T>
     private string keyName; // the keyName is for the Strings in the Dictionary
     public T currentState; // a public Template currentState
     
-
     public void addState(T state) // add States, let the user add the states and store them.
     {
         if (gameState.Contains(state)) // Checks if the state exist in the list
@@ -23,12 +22,13 @@ public class FSM_PC <T>
             //Debug.Log("This " + state + " has been added to this list");
         }   
     }
+
     /*
         For What I understand so far. Delegates are used by a 'callBack' to exe whatever functions we pass into it. 
         First, we add the states, having both currentStates and nextStates as T's(templates). 
         adding the Transitions which have both states and the delegate that exe's all the functions that goes between those states.
-
     */ 
+
     public void addTransition(T currentState, T nextState, callBack del) // letting the user add transitions
     {
         if (gameState.Contains(currentState) && gameState.Contains(nextState)) // Checks if the current and nextState in the list
@@ -73,24 +73,3 @@ public class FSM_PC <T>
  Change current states to gotostates
  check the change of states
 */
-
-//void addDelegate(T t_delegate) // for transitions.
-//{
-
-//}
-
-//void exeFunctions(callBack t_delegate)
-//{
-//    transactionTable[transaction](); // exe that function.
-//    transactionTable.Add("chuiChu", t_delegate);
-//}
-
-//void chuiChu()
-//{
-//    Debug.Log("Thank you");
-//}
-
-//void cookies()
-//{
-//    Debug.Log("Thank you"); 
-//}
